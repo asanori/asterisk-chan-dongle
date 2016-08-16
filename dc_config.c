@@ -175,6 +175,10 @@ EXPORT_DEF void dc_sconfig_fill(struct ast_config * cfg, const char * cat, struc
 		{
 			config->smsaspdu = ast_true (v->value);			/* send_sms_as_pdu us set to 0 if invalid */
 		}
+		else if (!strcasecmp (v->name, "portsel"))
+		{
+			config->portsel = ast_true (v->value);			/* send_sms_as_pdu us set to 0 if invalid */
+		}
 		else if (!strcasecmp (v->name, "disable"))
 		{
 			config->initstate = ast_true (v->value) ? DEV_STATE_REMOVED : DEV_STATE_STARTED;
