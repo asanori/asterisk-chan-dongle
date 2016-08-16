@@ -78,7 +78,7 @@ typedef struct dc_sconfig
 	unsigned int		smsaspdu:1;			/*! 0 */
 	dev_state_t		initstate;			/*! DEV_STATE_STARTED */
 //	unsigned int		disable:1;			/*! 0 */
-
+	unsigned int		portsel:1;			/*! 0 */
 	call_waiting_t		callwaiting;			/*!< enable/disable/auto call waiting CALL_WAITING_AUTO */
 	dc_dtmf_setting_t	dtmf;				/*!< off/inband/relax incoming DTMF detection, default DC_DTMF_SETTING_RELAX */
 
