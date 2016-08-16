@@ -141,6 +141,7 @@ static int at_response_ok (struct pvt* pvt, at_res_t res)
 			case CMD_AT_CHLD_3:
 			case CMD_AT_CSCA:
 			case CMD_AT_CLCC:
+			case CMD_AT_PORTSEL:
 			case CMD_AT_CLIR:
 				ast_debug (3, "[%s] %s sent successfully\n", PVT_ID(pvt), at_cmd2str (ecmd->cmd));
 				break;
@@ -166,8 +167,7 @@ static int at_response_ok (struct pvt* pvt, at_res_t res)
 
 				pvt->has_voice = 1;
 				break;
-/*
-			case CMD_AT_CLIP:
+/*			case CMD_AT_CLIP:
 				ast_debug (1, "[%s] Calling line indication disabled\n", PVT_ID(pvt));
 				break;
 */
@@ -328,10 +328,10 @@ static int at_response_error (struct pvt* pvt, at_res_t res)
 			case CMD_AT_Z:
 			case CMD_AT_E:
 			case CMD_AT_CLCC:
+			case CMD_AT_PORTSEL:
 				ast_log (LOG_ERROR, "[%s] Command '%s' failed\n", PVT_ID(pvt), at_cmd2str (ecmd->cmd));
 				/* mean disconnected from device */
 				goto e_return;
-
 			/* not critical errors */
 			case CMD_AT_U2DIAG:
 			case CMD_AT_CCWA_SET:
