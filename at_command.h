@@ -64,7 +64,7 @@ typedef enum {
 	CMD_AT_Z,
 	CMD_AT_CMEE,
 	CMD_AT_CSCA,
-
+	CMD_AT_PORTSEL,
 	CMD_AT_CHLD_1x,
 	CMD_AT_CHLD_2x,
 	CMD_AT_CHLD_2,
@@ -133,7 +133,7 @@ INLINE_DECL const char* at_cmd2str (at_cmd_t cmd)
 		"ATZ",
 		"AT+CMEE",
 		"AT+CSCA",
-
+		"AT+PROTSEL",
 		"AT+CHLD=1x",
 		"AT+CHLD=2x",
 		"AT+CHLD=2",
