@@ -166,7 +166,7 @@ EXPORT_DEF int at_enque_initialization(struct cpvt* cpvt, at_cmd_t from_command)
 		ATQ_CMD_DECLARE_STI(CMD_AT_CSCS, cmd21),	/* UCS-2 text encoding */
 
 		ATQ_CMD_DECLARE_ST(CMD_AT_CPMS, cmd22),		/* SMS Storage Selection */
-			/* pvt->initialized = 1 after successful of CMD_AT_CNMI */
+		ATQ_CMD_DECLARE_DYN(CMD_AT_PORTSEL),	/* pvt->initialized = 1 after successful of CMD_AT_CNMI */
 		ATQ_CMD_DECLARE_ST(CMD_AT_CNMI, cmd23),		/* New SMS Notification Setting +CNMI=[<mode>[,<mt>[,<bm>[,<ds>[,<bfr>]]]]] */
 		ATQ_CMD_DECLARE_ST(CMD_AT_CSQ, cmd24),		/* Query Signal quality */
 		};
@@ -203,6 +203,14 @@ EXPORT_DEF int at_enque_initialization(struct cpvt* cpvt, at_cmd_t from_command)
 				goto failure;
 			ptmp1 = cmds[out].data;
 		}
+		else if(cmds[out].cmd == CMD_AT_PORTSEL)
+		{
+			err = at_fill_generic_cmd(&cmds[out], "AT^PORTSEL=%d\r", CONF_SHARED(pvt, portsel) ? 1 : 0);
+			if(err)
+				goto failure;
+			ptmp2 = cmds[out].data;
+		}
+
 		else if(cmds[out].cmd == CMD_AT_CMGF)
 		{
 			err = at_fill_generic_cmd(&cmds[out], "AT+CMGF=%d\r", CONF_SHARED(pvt, smsaspdu) ? 0 : 1);
